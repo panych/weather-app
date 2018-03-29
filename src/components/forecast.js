@@ -2,17 +2,6 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {round10, WEEK_DAYS} from '../utils'
 
-/*
-- Day (day of the week and date (23.03))
-- Time (00:30)
-- Description (clear sky, light rain)
-- Temp ℃: 1 , -10
-- Cloudness %:
-- Pressure:
-- Huminity:
-- Wind speed: k
-*/
-
 const parseDate = (timestamp)=> new Date(timestamp*1000)
 
 const drawDay = (d)=> {
@@ -92,7 +81,7 @@ class Forecast extends Component {
           return group.items.map((item, itemIndex) => (
             <td className={index % 2 ? 'col-even' : 'col-odd'}
               key={`${index}-${itemIndex}`}>
-              {item['weather'][0]['description']}
+              <small>{item['weather'][0]['description']}</small>
             </td>
           ))
         })}
@@ -168,7 +157,8 @@ class Forecast extends Component {
     const days = groupByDay(list)
 
     return (
-      <table className="table forecast-table">
+      <div className="forecast">
+      <table className="table forecast-table table-bordered">
         <tbody>
           {this.dayRow(days)}
           {this.timeRow(days)}
@@ -178,6 +168,7 @@ class Forecast extends Component {
           {this.humidityRow(days)}
         </tbody>
       </table>
+      </div>
     )
   }
 }

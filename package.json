@@ -4,9 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack-dev-server --mode=development",
-    "deploy-build": "rm -fr app dist; webpack; mkdir app; cp dist/* app/",
-    "html": "cp src/index.html dist"
+    "dev": "NODE_ENV=development webpack-dev-server --mode=development",
+    "deploy-build": "rm -fr app dist; NODE_ENV=production webpack; mkdir app; cp dist/* app/"
   },
   "author": "",
   "license": "ISC",
