@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "webpack-dev-server --mode=development",
+    "deploy-build": "rm -fr app dist; webpack; mkdir app; cp dist/* app/",
     "html": "cp src/index.html dist"
   },
   "author": "",
