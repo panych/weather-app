@@ -36,6 +36,10 @@ class App extends Component {
           <Search {...this.props} />
         </div>
         {this.props.connection.errors || this.props.connection.fetching ? '' : <ForecastContainer />}
+
+        <footer>
+          Панченко Олександр, 2018. <a href="http://github.com/panych/test-weather-app">Репозіторій.</a>
+        </footer>
       </div>
     )
   }
