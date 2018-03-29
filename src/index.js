@@ -21,11 +21,6 @@ window.weather = (query = 'Kiev')=> {
 }
 
 
-
-// const appEl = document.createElement('div')
-// appEl.setAttribute('id', 'app')
-// document.body.appendChild(appEl)
-
 ReactDOM.render(
   <Provider store={store}>
     <AppContainer/>

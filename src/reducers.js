@@ -1,5 +1,5 @@
 import {combineReducers} from 'redux'
-import {NEW_QUERY, SET_WEATHER_DATA} from './actions'
+import {NEW_QUERY, SET_WEATHER_DATA, SET_CONNECTION} from './actions'
 
 
 /*
@@ -20,7 +20,7 @@ import {NEW_QUERY, SET_WEATHER_DATA} from './actions'
 
 const queries = (state = [], action)=> {
   switch (action.type) {
-    case 'NEW_QUERY':
+    case NEW_QUERY:
       const newState = state.slice(0, state.length)
       newState.unshift(action.data)
       return newState
@@ -43,9 +43,21 @@ const weatherData = (state = null, action) => {
   }
 }
 
+const connection = (state = {}, action) => {
+  switch (action.type) {
+    case SET_CONNECTION:
+      return Object.assign({}, action.data)
+
+    default:
+      return state
+  }
+
+}
+
 
 
 export const rootReducer = combineReducers({
   queries,
-  weatherData
+  weatherData,
+  connection
 })
