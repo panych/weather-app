@@ -4,6 +4,49 @@
   <meta charset="UTF-8">
   <title>Погода у місті</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <style>
+    body {
+      padding: 20px;
+      font-size: 14px;
+    }
+
+    .main {
+      display: flex;
+      flex-flow: row;
+      justify-content: space-between;
+    }
+
+    .forecast {
+      overflow: auto;
+      font-size: 14px;
+      border: 1px solid #555;
+    }
+
+    .forecast-table th {
+      white-space: nowrap;
+    }
+
+    .forecast-table td.col-even {
+      background: #f1f1f1;
+    }
+
+    .forecast-table tr:first-child {
+      white-space: nowrap;
+    }
+
+    .history a {
+      margin-right: 7px;
+    }
+
+    .search-panel {
+      width: 400px;
+    }
+
+    .search-panel .form-control {
+      flex-grow: 1;
+      margin-right: 15px;
+    }
+  </style>
 </head>
 <body>
   <div id="app"></div>

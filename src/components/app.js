@@ -2,31 +2,10 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {search} from '../actions'
 import {ForecastContainer} from './forecast'
+import {Weather} from './weather'
+import {Search} from './search'
 
 class App extends Component {
-  onSubmit(e) {
-    e.preventDefault()
-    const query = e.target.elements.query.value
-    this.props.submitQuery(query)
-  }
-
-  history() {
-    return (
-      <ul>
-        {this.props.queries.map((q, index)=> <li>{q.query} ({q.date})</li>)}
-      </ul>
-    )
-  }
-
-  weather() {
-    const data = this.props.weatherData ? this.props.weatherData.weather : null
-    return (
-      <div>
-        <h2>Weather</h2>
-        {data ? JSON.stringify(data) : null}
-      </div>
-    )
-  }
 
   forecast() {
     const data = this.props.weatherData ? this.props.weatherData.forecast : null
@@ -41,14 +20,22 @@ class App extends Component {
   render() {
     return (
       <div>
-        <h1>Hello world</h1>
-        <form onSubmit={this.onSubmit.bind(this)}>
-          <input type="text" name="query" placeholder="City name" />
-          <input type="submit" value="submit" />
-        </form>
-        {this.history()}
-        {this.weather()}
-        <ForecastContainer />
+        <div className="main">
+          {(()=> {
+            if (this.props.connection.fetching) {
+              return <p>Працюємо...</p>
+            } else if (this.props.connection.errors) {
+              return <p>Помылка. Щось не так. Спробуйте інший запит (англійська працює краще).<br/> Або не пробуйте.</p>
+            } else if (this.props.weatherData && this.props.weatherData.weather) {
+              return <Weather weather={this.props.weatherData.weather} />
+            } else {
+              return <p>Спробуйте щось пошукати →</p>
+            }
+          })()}
+
+          <Search {...this.props} />
+        </div>
+        {this.props.connection.errors || this.props.connection.fetching ? '' : <ForecastContainer />}
       </div>
     )
   }

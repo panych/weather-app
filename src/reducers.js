@@ -1,23 +1,6 @@
 import {combineReducers} from 'redux'
 import {NEW_QUERY, SET_WEATHER_DATA, SET_CONNECTION} from './actions'
 
-
-/*
-{
-  queriesHistory: []
-  weatherData: {
-    weather: apiJSON,
-    forecast5:
-  }
-  connection: {
-    fetching: true | false
-    errors: []
-  }
-}
-*/
-
-
-
 const queries = (state = [], action)=> {
   switch (action.type) {
     case NEW_QUERY:
@@ -53,7 +36,6 @@ const connection = (state = {}, action) => {
   }
 
 }
-
 
 
 export const rootReducer = combineReducers({
