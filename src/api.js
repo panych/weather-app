@@ -1,5 +1,5 @@
 const apiKey = 'db80476386a4b10065421e2af1fcb7fc'
-const apiBase = 'http://api.openweathermap.org/data/2.5/'
+const apiBase = 'https://api.openweathermap.org/data/2.5/'
 
 
 export const callApi = (path, params)=> {
