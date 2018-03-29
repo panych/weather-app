@@ -4,14 +4,14 @@ const apiBase = 'http://api.openweathermap.org/data/2.5/'
 
 export const callApi = (path, params)=> {
   const url = new URL(path, apiBase)
-  url.search = '?' + new URLSearchParams(Object.assign({appid: apiKey}, params)).toString()
+  url.search = '?' + new URLSearchParams(Object.assign({appid: apiKey, lang: 'ua', units: 'metric'}, params)).toString()
   return fetch(url)
 }
 
 
 export const getWeather = (query)=> {
   return callApi('weather', {q: query}).then((res)=> {
-    if (res.ok) {
+    if (res.ok && res.json) {
       return res.json()
     } else {
       return Promise.reject('Error getting weather')
