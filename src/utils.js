@@ -30,3 +30,42 @@ export const round10 = (value, exp)=> decimalAdjust('round', value, exp)
 
 
 export const WEEK_DAYS = 'Неділя,Понеділок,Вівторок,Середа,Четвер,П’ятниця,Субота'.split(',')
+
+
+export const parseDate = (timestamp) => new Date(timestamp * 1000)
+
+export const drawDay = (d) => {
+  const month = d.getMonth() < 10 ? '0' + d.getMonth() : d.getMonth()
+  const date = d.getDate() < 10 ? '0' + d.getDate() : d.getDate()
+  const day = WEEK_DAYS[d.getDay()]
+  return `${day} (${date}.${month})`
+}
+
+export const drawTime = (d) => {
+  let h = d.getHours()
+  h = h < 10 ? `0${h}` : h
+  let m = d.getMinutes()
+  m = m < 10 ? '0' + m : m
+  return `${h}:${m}`
+}
+
+
+export const groupForecasByDay = (forecastList) => {
+  const listDates = forecastList.map((item) => item.dt_txt.split(' ')[0])
+  const result = []
+
+  listDates.forEach((d, index) => {
+    const group = result.find((el) => el.dateText === d)
+    if (group) {
+      group.items.push(forecastList[index])
+    } else {
+      result.push({
+        date: new Date(d),
+        dateText: d,
+        items: [forecastList[index]]
+      })
+    }
+  })
+
+  return result
+}
